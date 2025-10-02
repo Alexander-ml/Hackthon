@@ -58,8 +58,8 @@ public class SecurityConfig {
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated() // el resto necesita autenticación
                 )
-                .authenticationProvider(authenticationProvider())
+                .authenticationProvider(authenticationProvider()) // Le dice a Spring que use nuestro DaoAuthenticationProvider para autenticación.
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .build(); // Inserta tu filtro JWT antes del filtro estándar UsernamePasswordAuthenticationFilter. Así se valida el token antes de que Spring intente autenticar con usuario/contraseña.
     }
 }

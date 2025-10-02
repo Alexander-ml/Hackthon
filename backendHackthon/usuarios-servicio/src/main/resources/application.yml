@@ -38,7 +38,7 @@ spring:
 # CONFIGURACIÓN DEL SERVIDOR
 # ===============================
 server:
-  port: 8080
+  port: 8085
 
 # ===============================
 # CONFIGURACIÓN JWT

@@ -12,7 +12,7 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
     // Leer la clave secreta desde application.yml
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret}") // Value permite leer valores desde el archivo application.yml
     private String SECRET_KEY;
 
     // Leer la expiración desde application.yml
@@ -21,12 +21,12 @@ public class JwtUtil {
 
     // Generar token
     public String generarToken(String username) {
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date(System.currentTimeMillis()))  // Fecha emisión
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // usa lo configurado
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY) // Algoritmo de firma
-                .compact();
+        return Jwts.builder() // empieza a construir un token JWT.
+                .setSubject(username) // define el subject (usuario dueño del token).
+                .setIssuedAt(new Date(System.currentTimeMillis()))  // fecha de creación del token.
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // fecha de expiración (tiempo actual + lo definido en configuración)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY) // firma el token con HMAC-SHA256 usando la clave secreta.
+                .compact(); // finaliza y genera el string del token JWT.
     }
 
     // Extraer username del token
