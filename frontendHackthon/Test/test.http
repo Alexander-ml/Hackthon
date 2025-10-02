@@ -1,0 +1,12 @@
+### Registrar un usuario
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "nombres": "Zues",
+  "correo": "zeus@correo.com",
+  "contrasena": "z12345678",
+  "carrera": "Ingeniería de software",
+  "intereses": "Java, HTML, CSS",
+  "estado": "activo"
+}

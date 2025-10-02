@@ -3,13 +3,13 @@
 # ===============================
 spring:
   application:
-    name: backendHackthon
+    name: usuario-servicio
 
   # ===============================
   # CONFIGURACIÓN DE LA BASE DE DATOS
   # ===============================
   datasource:
-    url: jdbc:postgresql://localhost:5432/sistema_academico
+    url: jdbc:postgresql://localhost:5432/hackthon_db
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -39,3 +39,10 @@ spring:
 # ===============================
 server:
   port: 8080
+
+# ===============================
+# CONFIGURACIÓN JWT
+# ===============================
+jwt:
+  secret: "ilWA8gIe58CndFA0hTIHwAUyVos9FmlgDZZuNvjmC2o="
+  expiration: 36000000  # 10 horas en milisegundos

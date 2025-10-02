@@ -1,13 +1,13 @@
-package com.hackthon.backend;
+package com.hackthon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendApplication {
+public class usuarioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackendApplication.class, args);
+		SpringApplication.run(usuarioApplication.class, args);
 	}
 
 }
