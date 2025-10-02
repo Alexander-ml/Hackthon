@@ -1,0 +1,115 @@
+/* Body y contenedor general */
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  width: 320px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #000;
+}
+
+/* Inputs y grupos de inputs */
+.input-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* espacio para el ojo */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+  outline: none;
+}
+
+/* Contenedor de contraseña */
+.password-container {
+  position: relative;
+}
+
+/* 👁️ Ojo único */
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/6852/6852079.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: none; /* sin animación de cambio */
+}
+
+/* Botón de login */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background: #333;
+  transform: scale(1.02);
+}
+
+/* Enlaces extra (registrarse, etc.) */
+.extra-links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.extra-links a {
+  color: #000;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mensajes de error/éxito */
+.mensaje {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.mensaje.error {
+  color: red;
+}
+
+.mensaje.success {
+  color: green;
+}

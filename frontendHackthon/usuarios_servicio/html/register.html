@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Registrarse</h2>
+    <form id="registerForm">
+      <div class="input-group">
+        <input type="text" id="nombres" placeholder="Nombres" required>
+      </div>
+      <div class="input-group">
+        <input type="email" id="correo" placeholder="Correo" required>
+      </div>
+      <div class="input-group password-container">
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+        <span id="togglePassword" class="eye-icon"></span>
+      </div>
+      <div class="input-group">
+        <input type="text" id="carrera" placeholder="Carrera" required>
+      </div>
+      <div class="input-group">
+        <input type="text" id="intereses" placeholder="Intereses (ej: Java, HTML, CSS)">
+      </div>
+      
+      <button type="submit" class="btn">Registrarse</button>
+      <p id="mensaje"></p>
+    </form>
+
+    <div class="extra-links">
+      <a href="login.html">Volver al login</a>
+    </div>
+  </div>
+
+  <script src="../javascript/register.js" defer></script>
+</body>
+</html>

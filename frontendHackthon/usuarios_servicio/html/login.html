@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <!-- Campo de correo -->
+      <div class="input-group">
+        <input type="email" id="correo" placeholder="Correo" required>
+      </div>
+
+      <!-- Campo de contraseña con un solo span de ojo dinámico -->
+      <div class="input-group password-container">
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+        <!-- El span mostrará el ojo normal o tachado según el estado -->
+        <span id="togglePassword" 
+              class="eye-icon show" 
+              tabindex="0" 
+              role="button" 
+              aria-label="Mostrar u ocultar contraseña">
+        </span>
+      </div>
+
+      <!-- Botón de login -->
+      <button type="submit" class="btn">Iniciar Sesión</button>
+
+      <!-- Mensaje de error o éxito -->
+      <p id="mensaje" class="mensaje"></p>
+    </form>
+
+    <!-- Enlaces extra -->
+    <div class="extra-links">
+      <a href="register.html">Registrarse</a>
+    </div>
+  </div>
+
+  <!-- JS para login y toggle de contraseña -->
+  <script src="../javascript/login.js" defer></script>
+</body>
+</html>
