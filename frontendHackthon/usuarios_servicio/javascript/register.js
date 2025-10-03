@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch("http://localhost:8085/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombres, correo, contrasena, carrera, intereses, estado: "(activo)"})
+        body: JSON.stringify({ nombres, correo, contrasena, carrera, intereses, estado: "activo"})
       });
 
       if (!response.ok) {
