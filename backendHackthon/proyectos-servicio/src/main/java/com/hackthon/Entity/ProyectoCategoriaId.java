@@ -10,19 +10,31 @@ public class ProyectoCategoriaId implements Serializable {
     private Long idProyecto;
     private Long idCategoria;
 
+    // Constructor vacío para JPA
     public ProyectoCategoriaId() {}
 
+    // Constructor con parámetros
     public ProyectoCategoriaId(Long idProyecto, Long idCategoria) {
         this.idProyecto = idProyecto;
         this.idCategoria = idCategoria;
     }
 
     // Getters & Setters
-    public Long getIdProyecto() { return idProyecto; }
-    public void setIdProyecto(Long idProyecto) { this.idProyecto = idProyecto; }
+    public Long getIdProyecto() {
+        return idProyecto;
+    }
 
-    public Long getIdCategoria() { return idCategoria; }
-    public void setIdCategoria(Long idCategoria) { this.idCategoria = idCategoria; }
+    public void setIdProyecto(Long idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 
     // equals y hashCode (OBLIGATORIOS para claves compuestas)
     @Override

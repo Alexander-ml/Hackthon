@@ -1,32 +1,41 @@
 package com.hackthon.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "valoracion")
-@Data
+@Getter
+@Setter
 public class Valoracion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idValoracion;
 
-    private Long idProyecto;
+    @ManyToOne
+    @JoinColumn(name = "idProyecto", referencedColumnName = "idProyecto", foreignKey = @ForeignKey(name = "fk_valoracion_proyecto"))
+    private Long idproyecto;
 
-    private Long idUsuario;
+    private Long idUsuario;  // Almacena solo el ID del usuario, sin la entidad completa
 
-    @Min(1)
-    @Max(5)
     @Column(nullable = false)
-    private Integer puntaje;
+    private int puntaje;  // Puntaje debe estar entre 1 y 5, validado en la base de datos
 
-    private LocalDateTime fecha = LocalDateTime.now();
+    @CreationTimestamp
+    private LocalDateTime fecha;
 
-    @Column(length = 20)
     private String estado = "activo";
+
+    // Constructor vacío para JPA
+    public Valoracion() {}
+
+    // Constructor con parámetros (opcional)
+    public Valoracion(Long idproyecto, Long idUsuario, int puntaje) {
+        this.idproyecto = idproyecto;
+        this.idUsuario = idUsuario;
+        this.puntaje = puntaje;
+    }
 }

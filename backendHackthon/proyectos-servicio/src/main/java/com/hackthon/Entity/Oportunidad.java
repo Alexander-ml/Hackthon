@@ -13,10 +13,10 @@ public class Oportunidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOportunidad;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String tipo;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String titulo;
 
     @Column(columnDefinition = "TEXT")
@@ -25,9 +25,9 @@ public class Oportunidad {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
 
-    @Column(length = 100)
+    @Column(columnDefinition = "TEXT")
     private String categoria;
 
-    @Column(length = 20, nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String estado = "activa";
 }

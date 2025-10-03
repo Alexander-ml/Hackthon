@@ -29,7 +29,6 @@ public class ProyectoServiceImpl implements ProyectoService {
         return proyectoRepository.findById(idProyecto).map(p -> {
             p.setTitulo(proyecto.getTitulo());
             p.setDescripcion(proyecto.getDescripcion());
-            p.setCategoria(proyecto.getCategoria());
             p.setEstado(proyecto.getEstado());
             p.setTipo(proyecto.getTipo());
             p.setFechaActualizacion(LocalDateTime.now());

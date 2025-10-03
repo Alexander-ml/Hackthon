@@ -22,12 +22,12 @@ public class Notificacion {
     @Column
     private Long idOportunidad;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String mensaje;
 
     @Column(nullable = false)
     private LocalDateTime fechaEnvio = LocalDateTime.now();
 
-    @Column(length = 20, nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String estado = "no_leida";
 }

@@ -1,11 +1,12 @@
 package com.hackthon.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "categoria")
-@Data
+@Getter
+@Setter
 public class Categoria {
 
     @Id
@@ -14,4 +15,12 @@ public class Categoria {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nombre;
+
+    // Constructor vacío para JPA
+    public Categoria() {}
+
+    // Constructor con parámetros (opcional)
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
 }

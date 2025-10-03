@@ -22,6 +22,6 @@ public class InscripcionOportunidad {
     @Column(nullable = false)
     private LocalDateTime fechaInscripcion = LocalDateTime.now();
 
-    @Column(length = 20, nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String estado = "inscrito";
 }

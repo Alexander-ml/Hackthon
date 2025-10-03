@@ -1,33 +1,50 @@
 package com.hackthon.Entity;
-import jakarta.persistence.*;
-import lombok.Data;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "recurso")
-@Data
+@Getter
+@Setter
 public class Recurso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRecurso;
 
-    private Long idProyecto; // relación con Proyecto
+    @ManyToOne
+    @JoinColumn(name = "idProyecto", referencedColumnName = "idProyecto", foreignKey = @ForeignKey(name = "fk_recurso_proyecto"))
+    private Long idproyecto;
 
-    @Column(length = 200, nullable = false)
+    @Column(nullable = false, length = 200)
     private String nombre;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Lob
     private String url;
 
-    @Column(columnDefinition = "TEXT")
+    @Lob
     private String descripcion;
 
-    private Long idUsuario; // relación con Usuario, puede ser null
+    private Long idUsuario;  // Solo almacena el ID del usuario (sin dependencia directa)
 
-    private LocalDateTime fechaCreacion = LocalDateTime.now();
+    @CreationTimestamp
+    private LocalDateTime fechaCreacion;
 
-    @Column(length = 20)
     private String estado = "visible";
+
+    // Constructor vacío para JPA
+    public Recurso() {}
+
+    // Constructor con parámetros (opcional)
+    public Recurso(Long idproyecto, String nombre, String url, String descripcion, Long idUsuario) {
+        this.idproyecto = idproyecto;
+        this.nombre = nombre;
+        this.url = url;
+        this.descripcion = descripcion;
+        this.idUsuario = idUsuario;
+    }
 }
+

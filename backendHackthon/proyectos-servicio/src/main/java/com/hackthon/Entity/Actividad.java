@@ -19,7 +19,7 @@ public class Actividad {
     @Column
     private Long idProyecto;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String accion;
 
     @Column(columnDefinition = "TEXT")
@@ -28,6 +28,6 @@ public class Actividad {
     @Column(nullable = false)
     private LocalDateTime fecha = LocalDateTime.now();
 
-    @Column(nullable = false, length = 20)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String estado = "activo";
 }

@@ -13,7 +13,7 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEvento;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String titulo;
 
     @Column(columnDefinition = "TEXT")
@@ -22,12 +22,12 @@ public class Evento {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
 
-    @Column(length = 100)
+    @Column(columnDefinition = "TEXT")
     private String categoria;
 
-    @Column(length = 200)
+    @Column(columnDefinition = "TEXT")
     private String lugar;
 
-    @Column(length = 20, nullable = false)
+    @Column(columnDefinition = "TEXT",nullable = false)
     private String estado = "proximo";
 }

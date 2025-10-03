@@ -1,33 +1,44 @@
 package com.hackthon.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "colaborador_proyecto")
-@Data
+@Getter
+@Setter
 public class ColaboradorProyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idColaboradorProyecto;
 
-    private Long idProyecto; // relación con Proyecto
+    @ManyToOne
+    @JoinColumn(name = "idProyecto", referencedColumnName = "idProyecto", foreignKey = @ForeignKey(name = "fk_colaborador_proyecto"))
+    private Long idproyecto;
 
-    private Long idUsuario; // relación con Usuario
+    private Long idUsuario;  // Almacena solo el ID del usuario, sin la entidad completa.
 
-    @Column(length = 50)
     private String rol;
 
-    private LocalDateTime fechaUnion = LocalDateTime.now();
+    @CreationTimestamp
+    private LocalDateTime fechaUnion;
 
     private LocalDateTime fechaSalida;
-
-    @Column(columnDefinition = "TEXT")
     private String descripcion;
-
-    @Column(length = 20)
     private String estado = "activo";
+
+    // Constructor vacío para JPA
+    public ColaboradorProyecto() {}
+
+    // Constructor con parámetros (opcional)
+    public ColaboradorProyecto(Long idproyecto, Long idUsuario, String rol, String descripcion) {
+        this.idproyecto = idproyecto;
+        this.idUsuario = idUsuario;
+        this.rol = rol;
+        this.descripcion = descripcion;
+    }
 }
+

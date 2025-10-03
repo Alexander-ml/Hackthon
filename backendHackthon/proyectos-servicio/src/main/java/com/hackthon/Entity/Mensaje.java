@@ -25,6 +25,6 @@ public class Mensaje {
     @Column(nullable = false)
     private LocalDateTime fechaEnvio = LocalDateTime.now();
 
-    @Column(nullable = false, length = 20)
-    private String estado = "enviado";
+    @Column(nullable = false)
+    private String estado;
 }
