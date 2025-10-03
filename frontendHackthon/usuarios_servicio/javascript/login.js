@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Mostrar/ocultar contraseña ---
   if (togglePassword && passwordInput) {
     const toggleVisibility = () => {
-      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+      passwordInput.type =
+        passwordInput.type === "password" ? "text" : "password";
     };
 
     togglePassword.addEventListener("click", toggleVisibility);
@@ -23,54 +24,62 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Validación y login ---
   if (!form) return;
   form.addEventListener("submit", async function (e) {
-  e.preventDefault();
-  mensaje.textContent = "";
-  mensaje.className = "mensaje";
+    e.preventDefault();
+    mensaje.textContent = "";
+    mensaje.className = "mensaje";
 
-  const correo = document.getElementById("correo").value.trim();
-  const contrasena = passwordInput.value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const contrasena = passwordInput.value.trim();
 
-  try {
-    const response = await fetch("http://localhost:8085/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ correo, contrasena })
-    });
-
-    let data = {};
     try {
-      data = await response.json();
-    } catch {
-      console.warn("La respuesta no fue JSON válido.");
-    }
+      const response = await fetch("http://localhost:8085/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo, contrasena }),
+      });
 
-    if (!response.ok) {
-      mensaje.textContent = data.message || "Usuario o contraseña incorrectos.";
+      let data = {};
+      try {
+        data = await response.json();
+      } catch {
+        console.warn("La respuesta no fue JSON válido.");
+      }
+
+      if (!response.ok) {
+        mensaje.textContent =
+          data.message || "Usuario o contraseña incorrectos.";
+        mensaje.className = "mensaje error";
+        return;
+      }
+
+      const token = data.token;
+      if (!token || token.split(".").length !== 3) {
+        mensaje.textContent = "No se pudo obtener un token válido.";
+        mensaje.className = "mensaje error";
+        return;
+      }
+
+      // --- Guardamos token y nombre del usuario ---
+      localStorage.setItem("token", token);
+
+      // Guardar el nombre del usuario según lo que devuelva tu API
+      // Asegúrate que tu API devuelva data.nombre
+      localStorage.setItem(
+        "nombreUsuario",
+        data.nombre || data.usuario || "Usuario"
+      );
+
+      mensaje.textContent = "Inicio de sesión exitoso";
+      mensaje.className = "mensaje success";
+
+      // --- Redirigir al dashboard después de 1s ---
+      setTimeout(() => {
+        window.location.href = "../html/dashboard.html";
+      }, 1000);
+    } catch (err) {
+      mensaje.textContent = "Error de conexión con el servidor.";
       mensaje.className = "mensaje error";
-      return;
+      console.error("Error login:", err);
     }
-
-    const token = data.token;
-    if (!token || token.split(".").length !== 3) {
-      mensaje.textContent = "No se pudo obtener un token válido.";
-      mensaje.className = "mensaje error";
-      return;
-    }
-
-    // Guardamos el token
-    localStorage.setItem("token", token);
-    mensaje.textContent = "Inicio de sesión exitoso";
-    mensaje.className = "mensaje success";
-
-    // Redirigimos al dashboard
-    setTimeout(() => {
-      window.location.href = "proyecto_servicio\misproyectos\dashboard.html"; // revisa esta ruta
-    }, 1000);
-
-  } catch (err) {
-    mensaje.textContent = "Error de conexión con el servidor.";
-    mensaje.className = "mensaje error";
-    console.error("Error login:", err);
-  }
-});
+  });
 });

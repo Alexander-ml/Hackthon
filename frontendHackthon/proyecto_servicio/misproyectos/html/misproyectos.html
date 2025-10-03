@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Phanttom</title>
+  <link rel="stylesheet" href="../../misproyectos/css/styles.css">
+</head>
+<body>
+  <!-- Sidebar (menú lateral) -->
+  <div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+      <li class="active">📂 Mis proyectos</li>
+      <li>💬 Oportunidades</li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <!-- Cabecera superior -->
+    <div class="header">
+      <div class="logo">Phanttom</div>
+      <div class="user-info">
+        <div class="bell" id="bell">🔔</div>
+        <div class="notifications" id="notifications">
+          <h4>Notificaciones</h4>
+          <div class="notification-item">Notificación 1</div>
+          <div class="notification-item">Notificación 2</div>
+          <div class="notification-item">Notificación 3</div>
+        </div>
+        <span><strong>ABC</strong><br>Rol ABC</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/12470/12470665.png" alt="Usuario" id="userIcon">
+        <div class="user-menu" id="userMenu">
+          <ul>
+            <li id="logoutBtn">🚪 Cerrar sesión</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="content">
+      <!-- Sección de proyectos -->
+      <div class="proyectos-section">
+        <!-- Encabezado de proyectos con título y filtro -->
+        <div class="proyectos-header">
+          <h2>Mis proyectos</h2>
+          <select id="filtroProyectos">
+            <option value="todos">Todos los proyectos</option>
+            <option value="en_progreso">En progreso</option>
+            <option value="finalizados">Finalizados</option>
+            <option value="pendientes">Pendientes</option>
+          </select>
+        </div>
+
+        <!-- Área de grilla de proyectos -->
+        <div class="proyectos-grid" id="proyectosGrid">
+          <!-- Ejemplo de cards para ver estructura con el CSS -->
+          <div class="proyecto-card">
+            <h3>Proyecto ejemplo 1</h3>
+            <p>Descripción corta del proyecto.</p>
+            <span class="estado">En progreso</span>
+          </div>
+          <div class="proyecto-card">
+            <h3>Proyecto ejemplo 2</h3>
+            <p>Descripción corta del proyecto.</p>
+            <span class="estado">Finalizado</span>
+          </div>
+          <div class="proyecto-card">
+            <h3>Proyecto ejemplo 3</h3>
+            <p>Descripción corta del proyecto.</p>
+            <span class="estado">Pendiente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="../../misproyectos/javascript/dashboard.js" defer></script>
+</body>
+</html>

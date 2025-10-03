@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Phanttom</title>
+  <!-- Ruta corregida al CSS -->
+  <link rel="stylesheet" href="../../proyecto_servicio/misproyectos/css/styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+      <li class="active">📂 Mis proyectos</li>
+      <li>💬 Oportunidades</li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo" id="logoPhanttom">Phanttom</div>
+      <div class="user-info">
+        <div class="bell" id="bell">🔔</div>
+        <div class="notifications" id="notifications">
+          <h4>Notificaciones</h4>
+          <div class="notification-item">Notificación 1</div>
+          <div class="notification-item">Notificación 2</div>
+          <div class="notification-item">Notificación 3</div>
+        </div>
+        <!-- Saludo dinámico -->
+        <span id="saludoUsuario">Hola ...</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/12470/12470665.png" alt="Usuario" id="userIcon">
+        
+        <!-- Menú de usuario -->
+        <div class="user-menu" id="userMenu">
+          <ul>
+            <li id="logoutBtn">🚪 Cerrar sesión</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Noticias -->
+    <div class="noticias">
+      <h2>Noticias</h2>
+      <p>Aquí aparecerán las últimas novedades sobre tus proyectos.</p>
+    </div>
+
+    <!-- Contenido -->
+    <div class="content">
+      <!-- Proyectos -->
+      <div class="proyectos-section">
+        <div class="proyectos-header">
+          <h2>Proyectos</h2>
+          <select id="filtroProyectos">
+            <option value="todos">Todos los proyectos</option>
+            <option value="en_progreso">En progreso</option>
+            <option value="finalizados">Finalizados</option>
+            <option value="pendientes">Pendientes</option>
+          </select>
+        </div>
+
+        <!-- Contenedor dinámico -->
+        <div class="proyectos-grid" id="proyectosGrid">
+          <!-- Aquí se insertarán los proyectos desde la API -->
+        </div>
+      </div>
+
+      <!-- Recordatorio -->
+      <div class="actividades">
+        <h3>📌 Recordatorio</h3>
+        <div class="actividad">
+          <p>Recordatorio 1</p>
+        </div>
+        <div class="actividad">
+          <p>Recordatorio 2</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante -->
+  <div class="btn-flotante" id="btnFlotante">+</div>
+
+  <!-- JS de dashboard -->
+  <script src="../../proyecto_servicio/misproyectos/javascript/dashboard.js" defer></script>
+</body>
+</html>
