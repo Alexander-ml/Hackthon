@@ -1,0 +1,9 @@
+
+### Login del usuario
+POST http://localhost:8085/api/auth/login
+Content-Type: application/json
+
+{
+  "correo": "alex@correo.com",
+  "contrasena": "12345678"
+}

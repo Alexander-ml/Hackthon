@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -30,14 +32,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Usuario usuario) {
         if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
-            return ResponseEntity.badRequest().body("El correo ya está registrado.");
+            return ResponseEntity.badRequest().body(Map.of("message","El correo ya está registrado."));
         }
 
         // Encriptar contraseña antes de guardar
         usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
         usuarioRepository.save(usuario);
 
-        return ResponseEntity.ok("Usuario registrado con éxito.");
+        return ResponseEntity.ok(Map.of("message","Usuario registrado con exito"));
     }
 
     // Login y generación de JWT
@@ -50,6 +52,6 @@ public class AuthController {
         // Si llega aquí es porque la autenticación fue correcta
         String token = jwtUtil.generarToken(authentication.getName());
 
-        return ResponseEntity.ok("Token de acceso: " + token);
+        return ResponseEntity.ok(Map.of("token", token));
     }
 }

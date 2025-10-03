@@ -1,0 +1,9 @@
+### Registro de usuario
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "correo": "juan@example.com",
+  "contrasena": "123456"
+}
