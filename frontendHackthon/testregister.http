@@ -5,5 +5,8 @@ Content-Type: application/json
 {
   "nombre": "Juan Pérez",
   "correo": "juan@example.com",
-  "contrasena": "123456"
+  "contrasena": "123456",
+  "carrera": "Ing. Sistemas",
+  "intereses": "Python, IA",
+  "estado": "activo"
 }
