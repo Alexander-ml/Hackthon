@@ -289,7 +289,7 @@
         <!-- Menú de usuario -->
         <div class="user-menu" id="userMenu">
           <ul>
-            <li>🚪 Cerrar sesión</li>
+            <li id="logoutBtn">🚪 Cerrar sesión</li>
           </ul>
         </div>
       </div>
@@ -331,22 +331,26 @@
         </div>
       </div>
 
-      <!-- Actividades -->
+            <!-- Recordatorio -->
       <div class="actividades">
-        <h3>Actividades pendientes</h3>
+        <h3>📌 Recordatorio</h3>
         <div class="actividad">
-          <p>Entrega de documentación</p>
-          <small>Vence: 03/10/2025</small>
+          <p>Recordatorio 1</p>
         </div>
         <div class="actividad">
-          <p>Revisión de código</p>
-          <small>Vence: 05/10/2025</small>
+          <p>Recordatorio 2</p>
         </div>
       </div>
-    </div>
-  </div>
 
   <script>
+    // 🔒 Verificación del token
+    document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "../usuarios_servicio/login.html";
+  }
+});
+
     // Notificaciones toggle
     const bell = document.getElementById("bell");
     const notifications = document.getElementById("notifications");
@@ -374,12 +378,12 @@
         userMenu.style.display === "block" ? "none" : "block";
     });
 
-    // Cerrar sesión acción
-    document.querySelector(".user-menu ul li").addEventListener("click", () => {
-      alert("Sesión cerrada correctamente ✅");
-    });
+    // 🚪 Cerrar sesión acción
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("token"); 
+  alert("Sesión cerrada correctamente");
+  window.location.href = "../usuarios_servicio/login.html"; 
+});
   </script>
 </body>
 </html>
-
-
