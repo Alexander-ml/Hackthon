@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Redirigimos al dashboard
     setTimeout(() => {
-      window.location.href = "dashboard.html"; // revisa esta ruta
+      window.location.href = "proyecto_servicio\misproyectos\dashboard.html"; // revisa esta ruta
     }, 1000);
 
   } catch (err) {

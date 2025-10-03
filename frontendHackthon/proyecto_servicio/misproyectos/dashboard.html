@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Cibercholos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #111;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 15px;
+      border-left: 4px solid transparent;
+      transition: all 0.2s ease;
+      color: #fff; 
+    }
+
+    .sidebar ul li.active {
+      background-color: #fff;
+      color: #000;
+      border-left: 4px solid #000;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background-color: #f5f5f5;
+      padding: 12px 20px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .header .logo {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .header .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .header .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    /* Campana */
+    .bell {
+      cursor: pointer;
+      font-size: 20px;
+      color: black; 
+      position: relative;
+    }
+
+    /* Notificaciones */
+    .notifications {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 250px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .notifications h4 {
+      margin-bottom: 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .notification-item {
+      padding: 8px;
+      font-size: 13px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Menú usuario */
+    .user-menu {
+      display: none;
+      position: absolute;
+      top: 55px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      width: 160px;
+      z-index: 200;
+    }
+
+    .user-menu ul {
+      list-style: none;
+      padding: 10px 0;
+    }
+
+    .user-menu ul li {
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .user-menu ul li:hover {
+      background: #f0f0f0;
+    }
+
+    /* Noticias */
+    .noticias {
+      background-color: #e9e9e9;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    /* Layout interno */
+    .content {
+      display: flex;
+      margin: 20px;
+      gap: 20px;
+    }
+
+    /* Proyectos */
+    .proyectos-section {
+      flex: 3;
+    }
+
+    .proyectos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .proyectos-header h2 {
+      font-size: 18px;
+    }
+
+    .proyectos-header select {
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+    }
+
+    .proyectos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .proyecto-card {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      background-color: #fff;
+    }
+
+    .proyecto-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .proyecto-card p {
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Actividades */
+    .actividades {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      background-color: #f9f9f9;
+    }
+
+    .actividades h3 {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .actividad {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .actividad small {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+      <li class="active">📂 Mis proyectos</li>
+      <li>💬 Oportunidades</li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">Cibercholos</div>
+      <div class="user-info">
+        <div class="bell" id="bell">🔔</div>
+        <div class="notifications" id="notifications">
+          <h4>Notificaciones</h4>
+          <div class="notification-item">Notificación 1</div>
+          <div class="notification-item">Notificación 2</div>
+          <div class="notification-item">Notificación 3</div>
+        </div>
+        <span><strong>ABC</strong><br>Rol ABC</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/12470/12470665.png" alt="Usuario" id="userIcon">
+        
+        <!-- Menú de usuario -->
+        <div class="user-menu" id="userMenu">
+          <ul>
+            <li>🚪 Cerrar sesión</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Noticias -->
+    <div class="noticias">
+      <h2>Noticias</h2>
+      <p>Aquí aparecerán las últimas novedades sobre tus proyectos.</p>
+    </div>
+
+    <!-- Contenido -->
+    <div class="content">
+      <!-- Proyectos -->
+      <div class="proyectos-section">
+        <div class="proyectos-header">
+          <h2>Proyectos</h2>
+          <select>
+            <option>Todos los proyectos</option>
+            <option>En progreso</option>
+            <option>Finalizados</option>
+            <option>Pendientes</option>
+          </select>
+        </div>
+
+        <div class="proyectos-grid">
+          <div class="proyecto-card">
+            <h3>Proyecto 1</h3>
+            <p>Descripción breve del proyecto.</p>
+          </div>
+          <div class="proyecto-card">
+            <h3>Proyecto 2</h3>
+            <p>Descripción breve del proyecto.</p>
+          </div>
+          <div class="proyecto-card">
+            <h3>Proyecto 3</h3>
+            <p>Descripción breve del proyecto.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actividades -->
+      <div class="actividades">
+        <h3>Actividades pendientes</h3>
+        <div class="actividad">
+          <p>Entrega de documentación</p>
+          <small>Vence: 03/10/2025</small>
+        </div>
+        <div class="actividad">
+          <p>Revisión de código</p>
+          <small>Vence: 05/10/2025</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Notificaciones toggle
+    const bell = document.getElementById("bell");
+    const notifications = document.getElementById("notifications");
+
+    bell.addEventListener("click", () => {
+      notifications.style.display =
+        notifications.style.display === "block" ? "none" : "block";
+    });
+
+    // Sidebar opciones activas
+    const items = document.querySelectorAll(".sidebar ul li");
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        items.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+      });
+    });
+
+    // Menú usuario toggle
+    const userIcon = document.getElementById("userIcon");
+    const userMenu = document.getElementById("userMenu");
+
+    userIcon.addEventListener("click", () => {
+      userMenu.style.display =
+        userMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // Cerrar sesión acción
+    document.querySelector(".user-menu ul li").addEventListener("click", () => {
+      alert("Sesión cerrada correctamente ✅");
+    });
+  </script>
+</body>
+</html>
+
+
